@@ -4,6 +4,9 @@ import os from "os"
 import { fileURLToPath } from "url"
 const cpu_count = os.availableParallelism()
 import path, { dirname } from "path"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 if (cluster.isPrimary) {
 
@@ -21,7 +24,7 @@ if (cluster.isPrimary) {
 
 
     const app = express()
-    const port = 3000
+    const port = process.env.PORT || 3000
 
     app.get("/heavy", (req, res) => {
         let total = 0;
